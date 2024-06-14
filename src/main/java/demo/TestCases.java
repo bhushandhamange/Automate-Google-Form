@@ -1,18 +1,28 @@
 package demo;
 
-import org.openqa.selenium.chrome.ChromeDriver;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 
 public class TestCases {
-    ChromeDriver driver;
-    public TestCases()
-    {
+    WebDriver driver;
+
+    public TestCases() {
+
         System.out.println("Constructor: TestCases");
-        WebDriverManager.chromedriver().timeout(30).setup();
+
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
+       
     }
 
     public void endTest()
@@ -22,12 +32,18 @@ public class TestCases {
         driver.quit();
 
     }
+   
+    public  void testCase01() throws InterruptedException{
 
-    
-    public  void testCase01(){
         System.out.println("Start Test case: testCase01");
-        driver.get("https://www.google.com");
-        System.out.println("end Test case: testCase02");
+
+        HomePage hp = new HomePage(driver);        
+        hp.enterDetails();
+       
+        SuccessPage sp = new SuccessPage(driver);
+        sp.printSuccessMessage();
+        
+        System.out.println("end Test case: testCase01");
     }
 
 

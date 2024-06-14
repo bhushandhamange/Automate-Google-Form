@@ -18,12 +18,11 @@ public class App {
         tests.testCase01();
 
         //END Tests
-
-
         tests.endTest(); // End your test by clearning connections and closing browser
     }
 
     public static void main(String[] args) throws InterruptedException, MalformedURLException {
+        System.out.println("inside main");
         new App().getGreeting();
     }
 }
